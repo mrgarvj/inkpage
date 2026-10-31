@@ -108,8 +108,8 @@ function render(){
  function add(item,height){if(y+height>usableH&&pages[pages.length-1].length){pages.push([]);y=0}pages[pages.length-1].push(item);y+=height}
  for(const item of parsed){
   if(item.type==="gap"){add({type:"gap"},lh);continue}
-  if(item.type==="table"){const height=Math.max(lh*1.3,item.rows.length*lh*.74);add(item,height);continue}
-  if(item.type==="math"||item.type==="box"){add(item,lh*1.7);continue}
+  if(item.type==="table"){const height=Math.max(lh,item.rows.length*lh);add(item,height);continue}
+  if(item.type==="math"){add(item,lh*2);continue}if(item.type==="box"){add(item,lh);continue}
   if(item.type==="rule"){add(item,lh*.7);continue}
   if(item.type==="heading"||item.type==="list"||item.type==="quote"){add(item,lh*(1+(item.type==="heading"?.1:0)));continue}
   let cur="";for(const word of item.text.trim().split(/\s+/)){const test=cur?cur+" "+word:word;if(ctx.measureText(test).width>usableW&&cur){add({type:"text",text:cur},lh);cur=word}else cur=test}if(cur)add({type:"text",text:cur,paragraphEnd:true},lh);
@@ -125,7 +125,7 @@ function render(){
    if(it.type==="gap"){const gap=document.createElement("div");gap.className="doc-line";gap.setAttribute("aria-hidden","true");c.appendChild(gap);return;}
    if(it.type==="table"){const table=document.createElement("table");it.rows.forEach((row,r)=>{const tr=document.createElement("tr");row.forEach(v=>{const cell=document.createElement(r===0?"th":"td");cell.textContent=v;tr.appendChild(cell)});table.appendChild(tr)});c.appendChild(table);return}
    if(it.type==="math"){const el=document.createElement("div");el.className="math-block";el.textContent=it.text;c.appendChild(el);return}
-   if(it.type==="box"){const el=document.createElement("div");el.style.cssText="border:1px solid currentColor;padding:5px 7px;margin:4px 0";el.textContent=it.text;c.appendChild(el);return}
+   if(it.type==="box"){const el=document.createElement("div");el.style.cssText="border:1px solid currentColor;padding:0 7px;margin:0;height:var(--lh);line-height:var(--lh);box-sizing:border-box;overflow:hidden;transform:translateY(-1px)";el.textContent=it.text;c.appendChild(el);return}
    if(it.type==="rule"){const el=document.createElement("hr");el.style.border="0";el.style.borderTop="1px solid currentColor";c.appendChild(el);return}
    const el=document.createElement("div");el.className="doc-line"+(it.type==="heading"?" doc-heading":"");el.style.setProperty("--lh",lh+"px");
    if(it.type==="list"){el.style.paddingLeft=(it.depth*12)+"px";el.textContent=(it.ordered?(it.number+". "):"• ")+it.text}
