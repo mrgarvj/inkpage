@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>InkPage — Handwriting Studio</title>
+<meta name="description" content="InkPage is a browser-based handwriting document studio with ruled paper, handwriting fonts, Markdown, and LaTeX support.">
+<meta name="theme-color" content="#315cf5">
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:#20283b;background:#f4f6fb;--blue:#315cf5;--line:#e3e7f0;--muted:#778197}*{box-sizing:border-box}body{margin:0}button,input,select,textarea{font:inherit}button{cursor:pointer}.top{display:flex;align-items:center;justify-content:space-between;padding:14px 22px;background:white;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:4}.brand{font-weight:850;font-size:20px}.brand span{color:var(--blue)}.layout{display:grid;grid-template-columns:330px minmax(0,1fr);min-height:calc(100vh - 60px)}aside{background:#fff;border-right:1px solid var(--line);padding:18px;overflow:auto}main{padding:24px;min-width:0}.field{display:grid;gap:6px;margin-bottom:13px}.field label{font-size:12px;font-weight:700;color:#606b80}.field input:not([type=color]):not([type=range]),.field select,.field textarea{width:100%;border:1px solid #dce1ec;border-radius:8px;padding:9px;background:white}.field input[type=color]{width:100%;height:38px}.field textarea{min-height:190px;resize:vertical;line-height:1.55}.section{padding-bottom:16px;margin-bottom:16px;border-bottom:1px solid var(--line)}h3{font-size:13px;margin:0 0 12px}.row{display:grid;grid-template-columns:1fr 1fr;gap:9px}.btn{padding:9px 12px;border:1px solid var(--line);border-radius:8px;background:white;font-weight:700}.btn.primary{background:var(--blue);border-color:var(--blue);color:white}.templates{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.template{border:1px solid var(--line);background:white;border-radius:7px;padding:5px;font-size:11px}.template.active{border:2px solid var(--blue)}.swatch{height:48px;margin-bottom:5px;border:1px solid #e2e6ee;background:repeating-linear-gradient(to bottom,#fff 0 7px,#c6d9fa 7px 8px)}.swatch.plain{background:white}.swatch.grid{background-image:linear-gradient(#cdd7e6 1px,transparent 1px),linear-gradient(90deg,#cdd7e6 1px,transparent 1px);background-size:7px 7px}.swatch.faint{background:repeating-linear-gradient(to bottom,#fff 0 7px,#dcefe9 7px 8px)}.toolbar{display:flex;gap:6px;flex-wrap:wrap;margin:7px 0}.toolbar .btn{font-size:12px;padding:7px 9px}.range{display:grid;grid-template-columns:1fr 48px;gap:8px;align-items:center}.range input{width:100%;accent-color:var(--blue)}.range output{font-size:12px;color:var(--muted)}.stats{font-size:12px;color:var(--muted);margin:12px 0;display:flex;justify-content:space-between}.preview{display:flex;align-items:flex-start;justify-content:center;flex-wrap:wrap;gap:18px}.paper{position:relative;flex:none;overflow:hidden;background-color:white;box-shadow:0 8px 28px #29385c17;border:1px solid #e5e7ed;color:#203b78}.paper-content{position:absolute;overflow:hidden;overflow-wrap:anywhere;word-break:normal}.paper.ruled{background-image:repeating-linear-gradient(to bottom,transparent 0,transparent calc(var(--lh) - 1px),var(--rule) calc(var(--lh) - 1px),var(--rule) var(--lh))}.paper.ruled.margin:before{content:"";position:absolute;top:0;bottom:0;left:var(--left);border-left:1px solid #e77d8e}.paper.grid{background-image:linear-gradient(var(--rule) 1px,transparent 1px),linear-gradient(90deg,var(--rule) 1px,transparent 1px);background-size:var(--grid) var(--grid)}.paper.faint{background-image:repeating-linear-gradient(to bottom,transparent 0,transparent calc(var(--lh) - 1px),#d7ebe5 calc(var(--lh) - 1px),#d7ebe5 var(--lh))}.paper.plain{background-image:none}.paper-content .doc-line{display:block;min-height:var(--lh);line-height:var(--lh);position:relative}.paper-content .doc-heading{font-weight:600;margin-top:3px}.paper-content table{border-collapse:collapse;width:100%;font-size:.88em;line-height:1.3;margin:4px 0 7px}.paper-content th,.paper-content td{border:1px solid color-mix(in srgb,currentColor 55%,transparent);padding:2px 4px;font-weight:400;text-align:left}.paper-content th{font-weight:500}.paper-content .math-block{text-align:center;display:block;margin:3px 0;max-width:100%}.paper-content mjx-container{color:inherit!important;font-size:90%!important;max-width:100%}.paper-header{position:absolute;top:8px;left:12px;right:12px;font:10px Arial,sans-serif;color:#8e96a7;display:flex;justify-content:space-between}.hint{font-size:12px;color:var(--muted);line-height:1.5}.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:#20283b;color:white;padding:10px 14px;border-radius:9px;display:none;z-index:10}.toast.show{display:block}@media(max-width:850px){.layout{grid-template-columns:1fr}aside{border-right:0;border-bottom:1px solid var(--line);max-height:none}.top{position:static}main{padding:14px}}@media print{body{background:white}.top,aside,main>h2,main>.intro,main>.editor,.stats{display:none!important}.layout{display:block}main{padding:0}.preview{display:block}.paper{border:0;box-shadow:none;margin:0!important;break-after:page;page-break-after:always}.paper:last-child{break-after:auto;page-break-after:auto}@page{size:auto;margin:0}}
+</style>
+<script>window.MathJax={tex:{inlineMath:[["$","$"],["\\\\(","\\\\)"]],displayMath:[["$$","$$"],["\\\\[","\\\\]"]]},svg:{fontCache:"global"},startup:{typeset:false}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+<header class="top"><div class="brand"><span>✍</span> InkPage <small style="font-size:11px;color:#778197;font-weight:500"> HANDWRITING STUDIO</small></div><div><button class="btn" id="reset">Reset</button> <button class="btn primary" id="print">Export PDF / Print</button></div></header>
+<div class="layout">
+<aside>
+<div class="section"><h3>Paper preset</h3><div class="templates" id="templates">
+<button class="template active" data-paper="ruled"><div class="swatch"></div>College ruled</button><button class="template" data-paper="plain"><div class="swatch plain"></div>Plain</button><button class="template" data-paper="wide"><div class="swatch" style="background:repeating-linear-gradient(to bottom,#fff 0 10px,#c6d9fa 10px 11px)"></div>Wide ruled</button><button class="template" data-paper="grid"><div class="swatch grid"></div>10mm grid</button><button class="template" data-paper="faint"><div class="swatch faint"></div>Faint ruled</button><button class="template" data-paper="margin"><div class="swatch" style="position:relative"><span style="position:absolute;left:23%;height:100%;border-left:1px solid #e77d8e"></span></div>Indian ruled</button>
+</div>
+<div class="row" style="margin-top:12px"><div class="field"><label>Page size</label><select id="size"><option value="a4">A4</option><option value="letter">Letter</option><option value="a5">A5</option><option value="legal">Legal</option></select></div><div class="field"><label>Orientation</label><select id="orientation"><option value="portrait">Portrait</option><option value="landscape">Landscape</option></select></div></div>
+<div class="row"><div class="field"><label>Paper color</label><input id="paperColor" type="color" value="#ffffff"></div><div class="field"><label>Ruling color</label><input id="ruleColor" type="color" value="#c6d9fa"></div></div>
+<div class="field"><label>Line spacing</label><div class="range"><input id="line" type="range" min="18" max="42" value="27"><output id="lineOut">27 px</output></div></div>
+<div class="field"><label>Left margin</label><div class="range"><input id="margin" type="range" min="35" max="100" value="58"><output id="marginOut">58 px</output></div></div>
+<div class="field"><label>Page padding</label><div class="range"><input id="padding" type="range" min="28" max="90" value="54"><output id="paddingOut">54 px</output></div></div>
+</div>
+<div class="section"><h3>Handwriting</h3>
+<div class="field"><label>Preset font</label><select id="font"><option>Kalam</option><option>Caveat</option><option>Patrick Hand</option><option>Handlee</option><option>Coming Soon</option><option>Shadows Into Light</option><option>Architects Daughter</option><option>Indie Flower</option><option>Gloria Hallelujah</option><option>Reenie Beanie</option><option>Arial</option><option>Georgia</option></select></div>
+<div class="field"><label>Custom font (.ttf/.otf/.woff)</label><input type="file" id="fontFile" accept=".ttf,.otf,.woff,.woff2"></div>
+<div class="field"><label>Font size</label><div class="range"><input id="fontSize" type="range" min="10" max="32" value="19"><output id="fontSizeOut">19 px</output></div></div>
+<div class="row"><div class="field"><label>Ink color</label><input id="inkColor" type="color" value="#203b78"></div><div class="field"><label>Opacity</label><div class="range"><input id="opacity" type="range" min="40" max="100" value="95"><output id="opacityOut">95%</output></div></div></div>
+<div class="field"><label>Letter spacing</label><div class="range"><input id="letter" type="range" min="-1" max="3" step=".1" value=".2"><output id="letterOut">0.2 px</output></div></div>
+<div class="field"><label>Ink variation</label><div class="range"><input id="variation" type="range" min="0" max="3" step=".5" value="1"><output id="variationOut">1</output></div></div>
+</div>
+<div class="section"><h3>Document</h3><div class="field"><label>Header</label><input id="header" placeholder="Optional page header"></div><div class="field"><label>Paragraph spacing</label><div class="range"><input id="paragraph" type="range" min="0" max="20" value="2"><output id="paragraphOut">2 px</output></div></div><label class="hint"><input type="checkbox" id="pageNumbers"> Include page numbers</label><br><label class="hint"><input type="checkbox" id="showLines" checked> Include paper ruling when printing</label><div style="margin-top:10px"><button class="btn" id="savePreset">Save settings</button> <button class="btn" id="loadPreset">Load settings</button></div></div>
+<p class="hint">Fonts load from Google Fonts when online. LaTeX uses MathJax. Print via your browser and choose “Save as PDF”.</p>
+</aside>
+<main>
+<h2 style="margin:0 0 4px;font-size:20px">Your handwriting document</h2><p class="intro hint" style="margin:0 0 16px">Paste or type your content. Markdown tables, headings, lists and LaTeX equations are supported.</p>
+<div class="editor field"><label for="text">Document text</label><div class="toolbar"><button class="btn" data-insert="heading">+ Heading</button><button class="btn" data-insert="list">• List</button><button class="btn" data-insert="table">▦ Table</button><button class="btn" data-insert="math">∑ Equation</button><button class="btn" data-insert="box">□ Outline</button></div><textarea id="text" spellcheck="false" placeholder="Type or paste your assignment here...">Assignment — Digital Electronics
+
+## Ohm's Law
+
+The relationship between voltage, current and resistance is:
+
+$$
+V = IR
+$$
+
+| Quantity | Symbol | Unit |
+| --- | --- | --- |
+| Voltage | V | Volt |
+| Current | I | Ampere |
+| Resistance | R | Ohm |
+
+## Applications
+- Circuit analysis
+- Electrical measurements
+- Power calculations</textarea></div>
+<div class="stats"><span id="stats">Rendering preview…</span><span id="status">Ready</span></div><div class="preview" id="preview"></div>
+<p class="hint" style="margin-top:18px">This is a browser-based tool. Text stays in the page unless you export it. Font variation is a visual simulation and does not reproduce real pen strokes. Use Print → Save as PDF for export.</p>
+</main></div><div class="toast" id="toast"></div>
+<script>
+const $=id=>document.getElementById(id);let paperType="ruled",uploadedFont=null,uploadedUrl=null;
+const dims={a4:[210,297],letter:[215.9,279.4],a5:[148,210],legal:[215.9,355.6]};
+const ui=["size","orientation","paperColor","ruleColor","line","margin","padding","font","fontSize","inkColor","opacity","letter","variation","header","paragraph","pageNumbers","showLines","text"];
+function tell(s){$("toast").textContent=s;$("toast").classList.add("show");setTimeout(()=>$("toast").classList.remove("show"),2100)}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function val(id){return $(id).value}
+function parse(source){
+ const lines=source.replace(/\r\n?/g,"\n").split("\n"),out=[];
+ for(let i=0;i<lines.length;i++){
+  const raw=lines[i],t=raw.trim();
+  if(!t){if(out.length&&out[out.length-1].type!=="gap")out.push({type:"gap"});continue}
+  if(t.startsWith("$$")||t.startsWith("\\[")){
+   let math=t;
+   const close=t.startsWith("$$")?"$$":"\\]";
+   if(t===close||t==="$$"||t==="\\["){math="";while(i+1<lines.length&&!lines[i+1].trim().endsWith(close))math+=(math?"\n":"")+lines[++i];if(i+1<lines.length) {const end=lines[++i].trim();math+=(math?"\n":"")+end.replace(close,"")}}
+   else if(t.startsWith("$$")&&t.endsWith("$$")&&t.length>4)math=t.slice(2,-2);
+   else math=t.replace(/^\$\$|\$\$$|^\\\[|\\\]$/g,"");
+   out.push({type:"math",text:"\\["+math+"\\]"});continue;
+  }
+  if(t.startsWith(":::box ")){out.push({type:"box",text:t.slice(7)});continue}
+  if(/^\|.*\|$/.test(t)){const rows=[];while(i<lines.length&&/^\s*\|.*\|\s*$/.test(lines[i])){const row=lines[i].trim().slice(1,-1).split("|").map(c=>c.trim());if(!row.every(c=>/^:?-{3,}:?$/.test(c)))rows.push(row);i++}i--;out.push({type:"table",rows});continue}
+  if(/^#{1,6}\s/.test(t)){out.push({type:"heading",text:t.replace(/^#{1,6}\s/,"")});continue}
+  if(/^(-{3,}|\*{3,}|_{3,})$/.test(t)){out.push({type:"rule"});continue}
+  if(/^>\s?/.test(t)){out.push({type:"quote",text:t.replace(/^>\s?/,"")});continue}
+  const list=t.match(/^([-*+] |\d+[.)] )(.*)$/);
+  if(list){out.push({type:"list",text:list[2],ordered:/^\d/.test(list[1]),number:parseInt(list[1],10)||1,depth:Math.floor((raw.length-raw.trimStart().length)/2)});continue}
+  out.push({type:"text",text:raw});
+ }
+ while(out.length&&out[out.length-1].type==="gap")out.pop();return out;
+}
+function render(){
+ const src=val("text"),[wm,hm]=dims[val("size")];let W=wm,H=hm;if(val("orientation")==="landscape")[W,H]=[H,W];
+ const scale=Math.min(760/(W*3.7795),1000/(H*3.7795),1.35),pw=Math.round(W*3.7795*scale),ph=Math.round(H*3.7795*scale);
+ const fs=+val("fontSize")*scale,lh=+val("line")*scale,pad=+val("padding")*scale,left=Math.max(pad,+val("margin")*scale),right=pad;
+ const fam=uploadedFont?"InkPageUploaded":val("font"),ctx=document.createElement("canvas").getContext("2d");ctx.font=fs+'px "'+fam+'",cursive';
+ const parsed=parse(src),pages=[[]];let y=0;const usableW=pw-left-right,usableH=ph-pad*1.6;
+ function add(item,height){if(y+height>usableH&&pages[pages.length-1].length){pages.push([]);y=0}pages[pages.length-1].push(item);y+=height}
+ for(const item of parsed){
+  if(item.type==="gap"){y+=lh*.28;continue}
+  if(item.type==="table"){const height=Math.max(lh*1.3,item.rows.length*lh*.74);add(item,height);continue}
+  if(item.type==="math"||item.type==="box"){add(item,lh*1.7);continue}
+  if(item.type==="rule"){add(item,lh*.7);continue}
+  if(item.type==="heading"||item.type==="list"||item.type==="quote"){add(item,lh*(1+(item.type==="heading"?.1:0)));continue}
+  let cur="";for(const word of item.text.trim().split(/\s+/)){const test=cur?cur+" "+word:word;if(ctx.measureText(test).width>usableW&&cur){add({type:"text",text:cur},lh);cur=word}else cur=test}if(cur)add({type:"text",text:cur,paragraphEnd:true},lh+ +val("paragraph")*scale);
+ }
+ if(pages.length>1&&!pages.at(-1).length)pages.pop();
+ $("preview").innerHTML="";$("stats").textContent=(src.trim()?src.trim().split(/\s+/).length:0)+" words · "+pages.length+" page(s)";$("status").textContent="Preview updated";
+ pages.forEach((items,idx)=>{
+  const p=document.createElement("div");p.className="paper "+(paperType==="margin"?"ruled margin":paperType==="wide"?"ruled":paperType);p.style.width=pw+"px";p.style.height=ph+"px";p.style.backgroundColor=val("paperColor");p.style.setProperty("--lh",lh+"px");p.style.setProperty("--rule",val("ruleColor"));p.style.setProperty("--grid",(paperType==="grid"?10:5)*scale+"mm");p.style.setProperty("--left",left+"px");
+  if(!$("showLines").checked)p.classList.add("plain");
+  if(val("header")){const h=document.createElement("div");h.className="paper-header";h.innerHTML="<span>"+esc(val("header"))+"</span><span>"+(idx+1)+"</span>";p.appendChild(h)}
+  const c=document.createElement("div");c.className="paper-content";c.style.left=left+"px";c.style.right=right+"px";c.style.top=pad+"px";c.style.bottom=pad+"px";c.style.fontFamily='"'+fam+'",cursive';c.style.fontSize=fs+"px";c.style.lineHeight=lh+"px";c.style.letterSpacing=(+val("letter")*scale)+"px";c.style.color=val("inkColor");c.style.opacity=(+val("opacity"))/100;
+  items.forEach((it,j)=>{
+   if(it.type==="gap")return;
+   if(it.type==="table"){const table=document.createElement("table");it.rows.forEach((row,r)=>{const tr=document.createElement("tr");row.forEach(v=>{const cell=document.createElement(r===0?"th":"td");cell.textContent=v;tr.appendChild(cell)});table.appendChild(tr)});c.appendChild(table);return}
+   if(it.type==="math"){const el=document.createElement("div");el.className="math-block";el.textContent=it.text;c.appendChild(el);return}
+   if(it.type==="box"){const el=document.createElement("div");el.style.cssText="border:1px solid currentColor;padding:5px 7px;margin:4px 0";el.textContent=it.text;c.appendChild(el);return}
+   if(it.type==="rule"){const el=document.createElement("hr");el.style.border="0";el.style.borderTop="1px solid currentColor";c.appendChild(el);return}
+   const el=document.createElement("div");el.className="doc-line"+(it.type==="heading"?" doc-heading":"");el.style.setProperty("--lh",lh+"px");
+   if(it.type==="list"){el.style.paddingLeft=(it.depth*12)+"px";el.textContent=(it.ordered?(it.number+". "):"• ")+it.text}
+   else if(it.type==="quote"){el.style.borderLeft="2px solid currentColor";el.style.paddingLeft="7px";el.textContent=it.text}
+   else el.textContent=it.text;
+   const v=+val("variation");if(v){const seed=idx*91+j*13;el.style.transform="translateX("+(Math.sin(seed)*v*scale*.6)+"px) rotate("+(Math.sin(seed*.47)*v*.025)+"deg)"}
+   c.appendChild(el);
+  });
+  p.appendChild(c);if($("pageNumbers").checked){const n=document.createElement("div");n.style.cssText="position:absolute;bottom:8px;left:0;right:0;text-align:center;font:10px Arial";n.textContent=idx+1;p.appendChild(n)}$("preview").appendChild(p);
+ });
+ if(window.MathJax&&MathJax.typesetPromise)MathJax.typesetPromise([$("preview")]).catch(()=>{});
+}
+document.querySelectorAll("[data-paper]").forEach(b=>b.addEventListener("click",()=>{paperType=b.dataset.paper;document.querySelectorAll(".template").forEach(t=>t.classList.toggle("active",t===b));render()}));
+document.querySelectorAll("input,select,textarea").forEach(el=>el.addEventListener("input",()=>{const out=$(el.id+"Out");if(out)out.textContent=el.value+(["line","margin","padding","fontSize","letter","paragraph"].includes(el.id)?" px":el.id==="opacity"?"%":"");render()}));
+document.querySelectorAll("[data-insert]").forEach(b=>b.addEventListener("click",()=>{const snippets={heading:"## Heading\n",list:"- First point\n- Second point\n",table:"| Column 1 | Column 2 | Column 3 |\n| --- | --- | --- |\n| Row 1 | Value | Value |\n| Row 2 | Value | Value |\n",math:"$$\n\\frac{-b \\pm \\sqrt{b^2-4ac}}{2a}\n$$\n",box:":::box Important note goes here\n"};const t=$("text"),a=t.selectionStart,z=t.selectionEnd;t.setRangeText(snippets[b.dataset.insert],a,z,"end");t.focus();render()}));
+$("fontFile").addEventListener("change",e=>{const file=e.target.files[0];if(!file)return;if(uploadedUrl)URL.revokeObjectURL(uploadedUrl);uploadedUrl=URL.createObjectURL(file);uploadedFont=true;const style=document.createElement("style");style.textContent='@font-face{font-family:"InkPageUploaded";src:url("'+uploadedUrl+'")}';document.head.appendChild(style);render()});
+$("print").addEventListener("click",()=>{render();window.print()});
+$("reset").addEventListener("click",()=>{if(!confirm("Reset the document and settings?"))return;$("text").value="";location.reload()});
+$("savePreset").addEventListener("click",()=>{const data={paperType,values:Object.fromEntries(ui.map(id=>[id,$(id).type==="checkbox"?$(id).checked:$(id).value]))};localStorage.setItem("inkpage-settings",JSON.stringify(data));tell("Settings saved in this browser")});
+$("loadPreset").addEventListener("click",()=>{const d=localStorage.getItem("inkpage-settings");if(!d){tell("No saved settings found");return}const o=JSON.parse(d);paperType=o.paperType;for(const [id,v] of Object.entries(o.values||{})){if($(id)){if($(id).type==="checkbox")$(id).checked=v;else $(id).value=v}}document.querySelectorAll(".template").forEach(b=>b.classList.toggle("active",b.dataset.paper===paperType));render();tell("Settings loaded")});
+render();
+</script></body></html>
